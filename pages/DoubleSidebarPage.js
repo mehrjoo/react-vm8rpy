@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from "react";
-import DoubleSidebarLayout from "./DoubleSidebarLayout";
+import DoubleSidebarLayout from "../layouts/DoubleSidebarLayout";
 
 const Content = props => {
   const openLeftSidebar = () => props.onLeftSidebarOpen(!props.leftSidebarOpen);

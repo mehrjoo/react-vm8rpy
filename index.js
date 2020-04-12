@@ -1,19 +1,17 @@
 import React, { useState } from "react";
 import { render } from "react-dom";
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
-import Page from "./PageWithReducer";
 import "./style.css";
 
 import { BreakpointProvider } from "./breakpoint";
 
-import UseReducer from "./UseReducerPage";
-import LeftRightSidebar from "./LeftRightSidebarPage";
-import DoubleSidebar from "./DoubleSidebarPage";
-import Breakpoint from './BreakpointPage';
-
+// import Page from "./PageWithReducer";
+import UseReducer from "./pages/UseReducerPage";
+import LeftRightSidebar from "./pages/LeftRightSidebarPage";
+import DoubleSidebar from "./pages/DoubleSidebarPage";
+import Breakpoint from "./pages/BreakpointPage";
 
 const Home = ({ name }) => <div>Home {name}</div>;
-
 
 const App = props => {
   const [state, setState] = useState({
@@ -21,12 +19,12 @@ const App = props => {
   });
 
   return (
-    <BreakpointProvider >
+    <BreakpointProvider>
       <Router>
         <nav>
           <Link to="/">Home</Link> |<Link to="use-reducer">Use Reducer</Link> |
           <Link to="lr-sidebar">LR Sidebar</Link> |
-          <Link to="double-sidebar">Double Sidebar Layour</Link> |
+          <Link to="double-sidebar">Double Sidebar</Link> |
           <Link to="breakpoint">Breakpoint</Link> |
         </nav>
         <Switch>

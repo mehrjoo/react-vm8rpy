@@ -1,5 +1,5 @@
 import React from "react";
-import { useBreakpoint } from "./breakpoint.js";
+import { useBreakpoint } from "../hooks/breakpoint.js";
 
 export default (props) => {
   const breakpoints = useBreakpoint();
