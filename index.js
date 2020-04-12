@@ -3,7 +3,7 @@ import { render } from "react-dom";
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 import "./style.css";
 
-import { BreakpointProvider } from "./breakpoint";
+import { BreakpointProvider } from "./hooks/breakpoint";
 
 // import Page from "./PageWithReducer";
 import UseReducer from "./pages/UseReducerPage";

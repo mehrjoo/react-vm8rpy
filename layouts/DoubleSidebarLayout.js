@@ -4,16 +4,21 @@ import Sidebar from "react-sidebar";
 const mql = window.matchMedia("(min-width: 800px)");
 
 export default ({
+  responsive,
   leftSidebar,
   rightSidebar,
   content,
-  innerProps = {},
+  innerProps = { leftSidebar: {}, rightSidebar: {} },
   styles = {}
 }) => {
   const [state, setState] = useState({
-    leftSidebarDocked: mql.matches,
-    leftSidebarOpen: mql.matches,
-    rightSidebarOpen: false
+    leftSidebarDocked: responsive
+      ? mql.matches
+      : !!innerProps.leftSidebar.docked,
+    leftSidebarOpen: responsive 
+      ? mql.matches 
+      : !!innerProps.leftSidebar.open,
+    rightSidebarOpen: !!innerProps.rightSidebar.open
   });
 
   const mediaQueryChanged = () => {

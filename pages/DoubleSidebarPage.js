@@ -63,7 +63,7 @@ export default () => {
       rightSidebar={rightSidebarProps => <RightSidebar {...rightSidebarProps} />}
       content={contentProps => <Content {...contentProps} />}
       innerProps={{
-        leftSidebar:{docked: false}
+        leftSidebar:{docked: true}
       }}
       styles={{
         root: { top: 40 },
