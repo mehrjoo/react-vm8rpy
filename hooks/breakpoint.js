@@ -4,7 +4,7 @@ import React, {
   createContext,
   useContext} from 'react';
 
-const defaultValue = {}
+const defaultValue = {};
 
 const BreakpointContext = createContext(defaultValue);
 

@@ -1,7 +1,7 @@
 import React from "react";
 import { useBreakpoint } from "../hooks/breakpoint.js";
 
-export default (props) => {
+export default props => {
   const breakpoints = useBreakpoint();
 
   const matchingList = Object.keys(breakpoints).map(media => (
@@ -10,5 +10,10 @@ export default (props) => {
     </li>
   ));
 
-  return <ol>{matchingList}</ol>;
+  return (
+    <>
+      <ol>{matchingList}</ol>
+      <pre>{JSON.stringify(breakpoints, null, 2)}</pre>
+    </>
+  );
 };

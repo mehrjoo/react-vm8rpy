@@ -1,9 +1,10 @@
-import React, {useEffect, useState} from "react";
+import React, { useEffect, useState } from "react";
 import DoubleSidebarLayout from "../layouts/DoubleSidebarLayout";
 
 const Content = props => {
   const openLeftSidebar = () => props.onLeftSidebarOpen(!props.leftSidebarOpen);
-  const openRightSidebar = () => props.onRightSidebarOpen(!props.rightSidebarOpen);
+  const openRightSidebar = () =>
+    props.onRightSidebarOpen(!props.rightSidebarOpen);
   return (
     <div style={{ background: "#ef00ef" }}>
       <button onClick={openLeftSidebar}>left sidebar</button>
@@ -57,23 +58,36 @@ export default () => {
     };
   }, [mediaQueryChanged]);
 
-  return(
+  return (
     <DoubleSidebarLayout
+      autoDock
       leftSidebar={leftSidebarProps => <LeftSidebar {...leftSidebarProps} />}
-      rightSidebar={rightSidebarProps => <RightSidebar {...rightSidebarProps} />}
+      rightSidebar={rightSidebarProps => (
+        <RightSidebar {...rightSidebarProps} />
+      )}
       content={contentProps => <Content {...contentProps} />}
       innerProps={{
-        leftSidebar:{docked: true}
+        //left: { docked: true }
       }}
       styles={{
-        root: { top: 40 },
-        leftSidebar: { width: 300, background: "blue" },
-        rightSidebar: {
-          width: mqlMatch ? 300: "100%" ,
-          background: "green"
+        left: {
+          root: { top: 40 },
+          sidebar: { width: 300, background: "blue" },
         },
-        content: { background: "yellow" }
+        right: {
+          sidebar: { width: mqlMatch ? 300 : "100%", background: "green" },
+          content: { background: "yellow" }
+        }
       }}
+      // styles={{
+      //   root: { top: 40 },
+      //   leftSidebar: { width: 300, background: "blue" },
+      //   rightSidebar: {
+      //     width: mqlMatch ? 300: "100%" ,
+      //     background: "green"
+      //   },
+      //   content: { background: "yellow" }
+      // }}
     />
   );
-}
+};
