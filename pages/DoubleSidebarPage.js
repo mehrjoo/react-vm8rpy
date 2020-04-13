@@ -64,7 +64,7 @@ export default () => {
       content={contentProps => <Content {...contentProps} />}
       breakpoints={{left:"md"}}
       openDocked={{right: true}}
-      stretched = {{right: "sm"}}
+      stretched = {{right: "md"}}
       innerProps={{
         //left: { docked: false }
       }}
@@ -74,7 +74,7 @@ export default () => {
           sidebar: { background: "blue" },
         },
         right: {
-          sidebar: { background: "green" },
+          sidebar: { width: 250, background: "green" },
           content: { background: "yellow" }
         }
       }}

@@ -9,9 +9,9 @@ export default ({
   leftSidebar,
   rightSidebar,
   content,
-  breakpoints:{ left: leftBreakpoint, } ,
-  openDocked:{ right: rightOpenDocked, } ,
-  stretched:{ right: rightStretched, } ,
+  breakpoints:{ left: leftBreakpoint, } = {},
+  openDocked:{ right: rightOpenDocked, } = {},
+  stretched:{ right: rightStretched, } = {},
   innerProps: { left: leftInnerProps = {}, right: rightInnerProps = {} },
   styles: { left: leftStyles , right: rightStyles }
 }) => {
@@ -61,7 +61,7 @@ export default ({
     ...rightStyles,
     sidebar: {
       ...rightStyles.sidebar, 
-      width: !media[rightStretched]
+      width: media[rightStretched] === false
       ? "100%"
       : rightStyles.sidebar && rightStyles.sidebar.width //|| DEFAULT_SIDEBAR_WIDTH
     }
