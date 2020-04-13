@@ -20,8 +20,6 @@ export default ({
   const mediaQueryChanged = () => {
     setState({
       ...state,
-      // leftSidebarDocked: mql.matches,
-      // leftSidebarOpen: mql.matches
       leftSidebarDocked: autoDock ? mql.matches : !!innerPropsLeft.docked,
       leftSidebarOpen: autoDock ? mql.matches : !!innerPropsLeft.open
     });
@@ -56,10 +54,6 @@ export default ({
       onSetOpen={onLeftSidebarOpen}
       {...innerPropsLeft}
       styles={stylesLeft}
-      // styles={{
-      //   root: styles.root,
-      //   sidebar: styles.leftSidebar
-      // }}
     >
       <Sidebar
         sidebar={rightSidebar({
@@ -73,10 +67,6 @@ export default ({
         pullRight
         {...innerPropsRight}
         styles={stylesRight}
-        // styles={{
-        //   sidebar: styles.rightSidebar,
-        //   content: styles.content
-        // }}
       >
         {content({
           onLeftSidebarOpen: onLeftSidebarOpen,
