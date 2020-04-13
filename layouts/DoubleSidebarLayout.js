@@ -8,6 +8,7 @@ export default ({
   rightSidebar,
   content,
   breakpoints:{ left: leftBreakpoint, } ,
+  openDocked:{ right: rightOpenDocked, } ,
   innerProps: { left: innerPropsLeft = {}, right: innerPropsRight = {} },
   styles: { left: stylesLeft = {}, right: stylesRight = {} }
 }) => {
@@ -38,15 +39,25 @@ export default ({
   };
 
   const onRightSidebarOpen = open => {
+    let update = (rightOpenDocked)
+    ? {
+      rightSidebarDocked: open,
+      rightSidebarOpen: false,
+      }
+    : {
+      rightSidebarDocked: false,
+      rightSidebarOpen: open,
+    }
     setState({ 
-      ...state, 
-      rightSidebarDocked: open 
+      ...state,
+      ...update 
+      // rightSidebarDocked: open 
       // rightSidebarOpen: open 
       });
   };
 
   console.log('state',state);
-  
+
   return (
     <Sidebar
       sidebar={leftSidebar({

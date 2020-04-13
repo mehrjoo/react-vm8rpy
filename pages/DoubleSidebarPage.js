@@ -60,11 +60,10 @@ export default () => {
   return (
     <DoubleSidebarLayout      
       leftSidebar={leftSidebarProps => <LeftSidebar {...leftSidebarProps} />}
-      rightSidebar={rightSidebarProps => (
-        <RightSidebar {...rightSidebarProps} />
-      )}
+      rightSidebar={rightSidebarProps => <RightSidebar {...rightSidebarProps} />}
       content={contentProps => <Content {...contentProps} />}
       breakpoints={{left:"md"}}
+      openDocked={{right: false}}
       innerProps={{
         //left: { docked: false }
       }}
