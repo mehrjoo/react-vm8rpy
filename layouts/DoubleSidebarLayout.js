@@ -12,8 +12,10 @@ export default ({
   styles: { left: stylesLeft = {}, right: stylesRight = {} }
 }) => {
   const [state, setState] = useState({
+    // leftSidebarDocked: autoDock ? mql.matches : !!innerPropsLeft.docked,
+    // leftSidebarOpen: autoDock ? mql.matches : !!innerPropsLeft.open,
     leftSidebarDocked: autoDock ? mql.matches : !!innerPropsLeft.docked,
-    leftSidebarOpen: autoDock ? mql.matches : !!innerPropsLeft.open,
+    leftSidebarOpen: !!innerPropsLeft.open,
     rightSidebarOpen: !!innerPropsRight.open
   });
 
@@ -21,7 +23,7 @@ export default ({
     setState({
       ...state,
       leftSidebarDocked: autoDock ? mql.matches : !!innerPropsLeft.docked,
-      leftSidebarOpen: autoDock ? mql.matches : !!innerPropsLeft.open
+      leftSidebarOpen: false //autoDock ? mql.matches : !!innerPropsLeft.open
     });
   };
 
@@ -37,7 +39,11 @@ export default ({
   };
 
   const onRightSidebarOpen = open => {
-    setState({ ...state, rightSidebarOpen: open });
+    setState({ 
+      ...state, 
+      rightSidebarDocked: open 
+      // rightSidebarOpen: open 
+      });
   };
 
   useEffect(() => console.log(state), [state]);
@@ -62,7 +68,7 @@ export default ({
           sidebarDocked: state.rightSidebarDocked
         })}
         open={state.rightSidebarOpen}
-        docked={state.rightSidebarOpen}
+        docked={state.rightSidebarDocked}
         onSetOpen={onRightSidebarOpen}
         pullRight
         {...innerPropsRight}
@@ -72,7 +78,9 @@ export default ({
           onLeftSidebarOpen: onLeftSidebarOpen,
           onRightSidebarOpen: onRightSidebarOpen,
           leftSidebarOpen: state.leftSidebarOpen,
-          rightSidebarOpen: state.rightSidebarOpen
+          rightSidebarOpen: state.rightSidebarOpen,
+          leftSidebarDocked: state.leftSidebarDocked,
+          rightSidebarDocked: state.rightSidebarDocked
         })}
       </Sidebar>
     </Sidebar>

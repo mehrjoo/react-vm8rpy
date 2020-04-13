@@ -2,9 +2,8 @@ import React, { useEffect, useState } from "react";
 import DoubleSidebarLayout from "../layouts/DoubleSidebarLayout";
 
 const Content = props => {
-  const openLeftSidebar = () => props.onLeftSidebarOpen(!props.leftSidebarOpen);
-  const openRightSidebar = () =>
-    props.onRightSidebarOpen(!props.rightSidebarOpen);
+  const openLeftSidebar = () => props.onLeftSidebarOpen(true);
+  const openRightSidebar = () => props.onRightSidebarOpen(true);
   return (
     <div style={{ background: "#ef00ef" }}>
       <button onClick={openLeftSidebar}>left sidebar</button>
@@ -67,7 +66,7 @@ export default () => {
       )}
       content={contentProps => <Content {...contentProps} />}
       innerProps={{
-        //left: { docked: true }
+        //left: { docked: false }
       }}
       styles={{
         left: {
@@ -79,15 +78,6 @@ export default () => {
           content: { background: "yellow" }
         }
       }}
-      // styles={{
-      //   root: { top: 40 },
-      //   leftSidebar: { width: 300, background: "blue" },
-      //   rightSidebar: {
-      //     width: mqlMatch ? 300: "100%" ,
-      //     background: "green"
-      //   },
-      //   content: { background: "yellow" }
-      // }}
     />
   );
 };
