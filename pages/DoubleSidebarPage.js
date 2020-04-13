@@ -63,17 +63,18 @@ export default () => {
       rightSidebar={rightSidebarProps => <RightSidebar {...rightSidebarProps} />}
       content={contentProps => <Content {...contentProps} />}
       breakpoints={{left:"md"}}
-      openDocked={{right: false}}
+      openDocked={{right: true}}
+      stretched = {{right: "sm"}}
       innerProps={{
         //left: { docked: false }
       }}
       styles={{
         left: {
           root: { top: 40 },
-          sidebar: { width: 300, background: "blue" },
+          sidebar: { background: "blue" },
         },
         right: {
-          sidebar: { width: mqlMatch ? 300 : "100%", background: "green" },
+          sidebar: { background: "green" },
           content: { background: "yellow" }
         }
       }}

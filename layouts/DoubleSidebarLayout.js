@@ -3,21 +3,24 @@ import Sidebar from "react-sidebar";
 
 import {useBreakpoint} from '../hooks/breakpoint';
 
+const DEFAULT_SIDEBAR_WIDTH = 300;
+
 export default ({
   leftSidebar,
   rightSidebar,
   content,
   breakpoints:{ left: leftBreakpoint, } ,
   openDocked:{ right: rightOpenDocked, } ,
-  innerProps: { left: innerPropsLeft = {}, right: innerPropsRight = {} },
-  styles: { left: stylesLeft = {}, right: stylesRight = {} }
+  stretched:{ right: rightStretched, } ,
+  innerProps: { left: leftInnerProps = {}, right: rightInnerProps = {} },
+  styles: { left: leftStyles , right: rightStyles }
 }) => {
   const media = useBreakpoint();
 
   const [state, setState] = useState({
-    leftSidebarDocked: media[leftBreakpoint] || !!innerPropsLeft.docked,
-    leftSidebarOpen: !!innerPropsLeft.open,
-    rightSidebarOpen: !!innerPropsRight.open
+    leftSidebarDocked: media[leftBreakpoint] || !!leftInnerProps.docked,
+    leftSidebarOpen: !!leftInnerProps.open,
+    rightSidebarOpen: !!rightInnerProps.open
   });
 
   const mediaQueryChanged = () => {
@@ -50,12 +53,20 @@ export default ({
     }
     setState({ 
       ...state,
-      ...update 
-      // rightSidebarDocked: open 
-      // rightSidebarOpen: open 
+      ...update,
       });
   };
 
+  const _rightStyles = {
+    ...rightStyles,
+    sidebar: {
+      ...rightStyles.sidebar, 
+      width: !media[rightStretched]
+      ? "100%"
+      : rightStyles.sidebar && rightStyles.sidebar.width //|| DEFAULT_SIDEBAR_WIDTH
+    }
+  }
+  console.log('_rightStyles',rightStretched, media, _rightStyles)
   console.log('state',state);
 
   return (
@@ -68,8 +79,8 @@ export default ({
       open={state.leftSidebarOpen}
       docked={state.leftSidebarDocked}
       onSetOpen={onLeftSidebarOpen}
-      {...innerPropsLeft}
-      styles={stylesLeft}
+      {...leftInnerProps}
+      styles={leftStyles}
     >
       <Sidebar
         sidebar={rightSidebar({
@@ -81,8 +92,8 @@ export default ({
         docked={state.rightSidebarDocked}
         onSetOpen={onRightSidebarOpen}
         pullRight
-        {...innerPropsRight}
-        styles={stylesRight}
+        {...rightInnerProps}
+        styles={_rightStyles}
       >
         {content({
           onLeftSidebarOpen: onLeftSidebarOpen,
