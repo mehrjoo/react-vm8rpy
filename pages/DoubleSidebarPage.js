@@ -58,13 +58,13 @@ export default () => {
   }, [mediaQueryChanged]);
 
   return (
-    <DoubleSidebarLayout
-      autoDock
+    <DoubleSidebarLayout      
       leftSidebar={leftSidebarProps => <LeftSidebar {...leftSidebarProps} />}
       rightSidebar={rightSidebarProps => (
         <RightSidebar {...rightSidebarProps} />
       )}
       content={contentProps => <Content {...contentProps} />}
+      breakpoints={{left:"md"}}
       innerProps={{
         //left: { docked: false }
       }}
